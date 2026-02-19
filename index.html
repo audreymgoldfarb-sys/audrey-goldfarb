@@ -168,6 +168,123 @@
   .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.animate-in { opacity: 0; transform: translateY(24px); }
   .reveal.animate-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ────────── MOBILE RESPONSIVE ────────── */
+  @media (max-width: 900px) {
+    nav {
+      padding: 1rem 2rem;
+    }
+    .nav-links {
+      gap: 1.2rem;
+    }
+    .nav-links a {
+      font-size: 0.6rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    /* Nav — hamburger style */
+    nav {
+      padding: 1rem 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+      width: 100%;
+    }
+    .nav-links a { font-size: 0.58rem; }
+
+    /* Hero */
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding-top: 7rem;
+    }
+    .hero-left {
+      padding: 2.5rem 1.5rem 2rem;
+      order: 2;
+    }
+    .hero-right {
+      order: 1;
+      height: 55vw;
+      max-height: 320px;
+      min-height: 220px;
+    }
+    .hero-right::before { display: none; }
+    .hero-name { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+    .hero-tagline { font-size: 0.95rem; max-width: 100%; }
+    .hero-ctas { flex-direction: column; gap: 0.7rem; }
+    .btn-primary, .btn-ghost, .btn-cv {
+      text-align: center;
+      padding: 0.85rem 1.5rem;
+      width: 100%;
+    }
+
+    /* All sections */
+    section { padding: 4rem 1.5rem; }
+    #contact { padding: 4rem 1.5rem; }
+
+    /* About */
+    #about { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-stat-grid { grid-template-columns: 1fr 1fr; }
+
+    /* Research */
+    .research-grid { grid-template-columns: 1fr; }
+
+    /* Publications */
+    .pub-item {
+      grid-template-columns: 55px 1fr;
+      gap: 1rem;
+    }
+    .pub-item > div:last-child {
+      grid-column: 2;
+      margin-top: 0.4rem;
+    }
+
+    /* Awards */
+    .awards-grid { grid-template-columns: 1fr; }
+
+    /* Scicomm */
+    .scicomm-grid { grid-template-columns: 1fr; }
+
+    /* Leadership */
+    .lead-item {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+    .lead-dates { padding-top: 0; }
+
+    /* Teaching */
+    .teaching-grid { grid-template-columns: 1fr; }
+    .ta-item {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+    .ta-dates { padding-top: 0; }
+
+    /* Contact */
+    #contact { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-link { flex-wrap: wrap; gap: 0.5rem; }
+    .contact-link-label { width: auto; }
+    .contact-tagline { font-size: 1.4rem; }
+
+    /* Section titles */
+    .section-title { font-size: clamp(1.7rem, 6vw, 2.2rem); margin-bottom: 2rem; }
+  }
+
+  @media (max-width: 400px) {
+    nav { padding: 0.8rem 1rem; }
+    .hero-left { padding: 2rem 1rem 1.5rem; }
+    section { padding: 3.5rem 1rem; }
+    #contact { padding: 3.5rem 1rem; }
+    .hero-name { font-size: 2.2rem; }
+    .about-stat-grid { grid-template-columns: 1fr 1fr; gap: 1.5px; }
+    .stat-num { font-size: 2rem; }
+  }
+
 </style>
 </head>
 <body>
@@ -477,9 +594,9 @@
     <div class="section-label">Contact</div>
     <h2 class="section-title" style="color:var(--cream)">Let's <em>connect</em></h2>
     <div class="contact-links">
-      <a class="contact-link" href="mailto:audrey.goldfarb@pennmedicine.upenn.edu">
+      <a class="contact-link" href="/cdn-cgi/l/email-protection#d3b2a6b7a1b6aafdb4bcbfb7b5b2a1b193a3b6bdbdbeb6b7bab0babdb6fda6a3b6bdbdfdb6b7a6">
         <span class="contact-link-label">Email</span>
-        audrey.goldfarb@pennmedicine.upenn.edu
+        <span class="__cf_email__" data-cfemail="bddcc8d9cfd8c493dad2d1d9dbdccfdffdcdd8d3d3d0d8d9d4ded4d3d893c8cdd8d3d393d8d9c8">[email&#160;protected]</span>
       </a>
       <a class="contact-link" href="https://www.linkedin.com/in/audrey-moran-goldfarb/" target="_blank">
         <span class="contact-link-label">LinkedIn</span>
@@ -500,20 +617,10 @@
 
 <footer>© 2025 Audrey Moran Goldfarb · Postdoctoral Fellow, University of Pennsylvania</footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     reveals.forEach(el => el.classList.add('animate-in'));
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
-  }
-</script>
-</body>
-</html>
